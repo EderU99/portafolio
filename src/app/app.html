@@ -214,10 +214,11 @@
               @if (activeTerminalTab() === 'ts') {
                 <pre class="fade-code"><code><span class="kw">const</span> <span class="var">ederUgarte</span> = &#123;
   <span class="prop">profesion</span>: <span class="str">'TSU Desarrollo de Software'</span>,
-  <span class="prop">especialidad</span>: <span class="str">'Multiplataforma &amp; Cloud TI'</span>,
+  <span class="prop">especialidad</span>: <span class="str">'Multiplataforma, IA &amp; TI'</span>,
   <span class="prop">frontend</span>: [<span class="str">'Angular'</span>, <span class="str">'JavaScript'</span>, <span class="str">'HTML/CSS'</span>],
   <span class="prop">backend</span>: [<span class="str">'Laravel'</span>, <span class="str">'PHP'</span>, <span class="str">'Python'</span>],
   <span class="prop">basesDeDatos</span>: [<span class="str">'MySQL'</span>, <span class="str">'SQL Server'</span>, <span class="str">'MongoDB'</span>],
+  <span class="prop">iaConsola</span>: [<span class="str">'Gemini CLI'</span>, <span class="str">'Grok CMD'</span>, <span class="str">'IA Video/Img'</span>],
   <span class="prop">github</span>: <span class="str">'&#64;EderU99'</span>,
   <span class="prop">listoParaCrear</span>: <span class="bool">true</span>
 &#125;;</code></pre>
@@ -227,7 +228,7 @@
 <span class="str">[OK]</span> Microsoft 365 / Office 365 Tenant Ready
 <span class="str">[OK]</span> Exchange Online &amp; SharePoint Configurados
 <span class="str">[OK]</span> Bitdefender: Monitoreo de Alertas &amp; Escaneos
-<span class="str">[OK]</span> Redes &amp; Sistema de Tickets: 99.9% SLA
+<span class="str">[OK]</span> Agentes IA CLI (Gemini / Grok): Operativos
 <span class="bool">&gt; Estado: Operación continua garantizada_</span></code></pre>
               } @else {
                 <pre class="fade-code"><code>&#123;
@@ -235,6 +236,7 @@
   <span class="prop">"nivelEducativo"</span>: <span class="str">"TSU Software Multiplataforma"</span>,
   <span class="prop">"perfilHibrido"</span>: &#123;
     <span class="prop">"desarrolloWeb"</span>: <span class="str">"Full Stack"</span>,
+    <span class="prop">"herramientasIA"</span>: <span class="str">"Gemini CLI, Grok &amp; GenAI Local"</span>,
     <span class="prop">"soporteInfraestructura"</span>: <span class="str">"Nivel 1 &amp; 2"</span>
   &#125;,
   <span class="prop">"disponibilidad"</span>: <span class="str">"Inmediata"</span>
@@ -273,13 +275,23 @@
             </p>
           </div>
 
-          <div class="about-card glow-card scroll-reveal reveal-fade-right delay-2">
+          <div class="about-card glow-card scroll-reveal reveal-fade-up delay-2">
             <div class="about-icon indigo">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
             </div>
             <h3>Infraestructura, Cloud &amp; Soporte N1/N2</h3>
             <p>
               Entiendo no solo cómo se escribe el código, sino también dónde y cómo opera. Cuento con experiencia práctica en administración de entornos <strong>Microsoft 365 (Exchange, SharePoint)</strong>, monitoreo de alertas de riesgo y escaneo preventivo de equipos en <strong>Bitdefender</strong>, redes básicas, gestión de tickets y soporte de <strong>Nivel 1 y Nivel 2</strong>.
+            </p>
+          </div>
+
+          <div class="about-card glow-card scroll-reveal reveal-fade-right delay-3">
+            <div class="about-icon purple">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"></path></svg>
+            </div>
+            <h3>Inteligencia Artificial &amp; Agentes CLI</h3>
+            <p>
+              Acelero la creación de software mediante herramientas avanzadas de IA directamente desde la terminal (<strong>Gemini CLI / Antigravity y Grok en CMD</strong>) para <em>pair programming</em> y automatización, además de desplegar y configurar entornos locales en PC para la <strong>generación de video e imágenes con IA</strong>.
             </p>
           </div>
         </div>
@@ -346,6 +358,9 @@
                     }
                     @case ('shield') {
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    }
+                    @case ('ai') {
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"></path></svg>
                     }
                   }
                 </div>

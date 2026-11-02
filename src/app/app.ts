@@ -62,8 +62,9 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   private readonly roles = [
     'Desarrollador de Software Multiplataforma',
     'Desarrollador Web Full Stack (Angular & Laravel)',
+    'Desarrollo Asistido por IA & Agentes CLI',
     'Especialista en Infraestructura & Cloud M365',
-    'Soporte Técnico Nivel 1 / Nivel 2 & Seguridad',
+    'Soporte Técnico Nivel 1 / Nivel 2 & Redes',
   ];
   private roleIndex = 0;
   private charIndex = 0;
@@ -77,10 +78,10 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   protected readonly profile = {
     name: 'Eder Ugarte',
     role: 'Desarrollador de Software Multiplataforma',
-    secondaryRole: 'Especialista en Infraestructura & Soporte TI',
+    secondaryRole: 'Especialista en Infraestructura TI & Herramientas IA',
     degree: 'Técnico Superior Universitario en Desarrollo de Software Multiplataforma',
     shortBio:
-      'Combino el desarrollo de aplicaciones web modernas con una sólida experiencia en infraestructura tecnológica, administración de servicios en la nube (Microsoft 365) y soporte técnico especializado.',
+      'Combino el desarrollo de aplicaciones web modernas con una sólida experiencia en infraestructura tecnológica (Microsoft 365 & Soporte N1/N2) y el uso avanzado de Inteligencia Artificial en consola (Gemini CLI, Grok) y generación multimedia local.',
     location: 'México',
     email: 'eder_daniel@live.com',
     github: 'https://github.com/EderU99',
@@ -161,6 +162,11 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       category: 'Control de Versiones',
       logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg',
     },
+    {
+      name: 'Gemini / IA CLI',
+      category: 'Agentes & Código',
+      logo: 'https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg',
+    },
   ];
 
   protected readonly skillCategories: SkillCategory[] = [
@@ -210,6 +216,18 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
         { name: 'Bitdefender (Consola Admin)', tag: 'Revisión de Alertas & Escaneos', level: 80 },
         { name: 'Redes Básicas', tag: 'Conectividad / LAN', level: 85 },
         { name: 'Sistemas de Tickets', tag: 'Gestión SLA', level: 94 },
+      ],
+    },
+    {
+      title: 'Inteligencia Artificial & Agentes en Consola (CLI)',
+      subtitle: 'Programación asistida por agentes IA, automatización en CMD y generación local de video e imagen',
+      icon: 'ai',
+      accent: 'purple',
+      skills: [
+        { name: 'Gemini CLI (Antigravity)', tag: 'Agente de Código en Terminal', level: 92 },
+        { name: 'IA Generativa Local en PC', tag: 'Generación de Video e Imágenes', level: 88 },
+        { name: 'Grok en CMD / Terminal', tag: 'Consultas & Scripting Rápido', level: 85 },
+        { name: 'Ingeniería de Prompts & Flujos IA', tag: 'Optimización de Desarrollo', level: 90 },
       ],
     },
   ];
