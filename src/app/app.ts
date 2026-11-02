@@ -81,7 +81,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     secondaryRole: 'Especialista en Infraestructura TI & Herramientas IA',
     degree: 'Técnico Superior Universitario en Desarrollo de Software Multiplataforma',
     shortBio:
-      'Combino el desarrollo de aplicaciones web modernas con una sólida experiencia en infraestructura tecnológica (Microsoft 365 & Soporte N1/N2) y el uso avanzado de Inteligencia Artificial en consola (Gemini CLI, Grok) y generación multimedia local.',
+      'Combino el desarrollo de aplicaciones web modernas con una sólida experiencia en infraestructura tecnológica (Microsoft 365 & Soporte N1/N2), el uso avanzado de agentes de IA en consola (Gemini CLI, Grok) y generación de video e imagen local con ComfyUI.',
     location: 'México',
     email: 'eder_daniel@live.com',
     github: 'https://github.com/EderU99',
@@ -220,12 +220,12 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       title: 'Inteligencia Artificial & Agentes en Consola (CLI)',
-      subtitle: 'Programación asistida por agentes IA, automatización en CMD y generación local de video e imagen',
+      subtitle: 'Programación asistida por agentes IA, automatización en CMD y flujos generativos locales con ComfyUI',
       icon: 'ai',
       accent: 'purple',
       skills: [
         { name: 'Gemini CLI (Antigravity)', tag: 'Agente de Código en Terminal', level: 92 },
-        { name: 'IA Generativa Local en PC', tag: 'Generación de Video e Imágenes', level: 88 },
+        { name: 'ComfyUI (IA Local en PC)', tag: 'Generación de Video e Imágenes', level: 88 },
         { name: 'Grok en CMD / Terminal', tag: 'Consultas & Scripting Rápido', level: 85 },
         { name: 'Ingeniería de Prompts & Flujos IA', tag: 'Optimización de Desarrollo', level: 90 },
       ],
