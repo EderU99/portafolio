@@ -25,6 +25,7 @@ interface Project {
   technologies: string[];
   repoUrl?: string;
   demoUrl?: string;
+  privateNote?: string;
   image?: string;
   featured?: boolean;
   progress?: number;
@@ -250,6 +251,17 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   protected readonly projects: Project[] = [
+    {
+      title: 'Sistema de Control de Acceso — Fuerza Civil',
+      status: 'Completado • Proyecto Institucional',
+      statusType: 'completed',
+      featured: true,
+      image: 'projects/acceso-guardia-preview.png',
+      description:
+        'Sistema web integral desarrollado durante mi estadía profesional para el control de entradas y salidas de personal policial, comandantes, vehículos oficiales, proveedores y visitantes en Fuerza Civil. Incluye escaneo de gafetes por QR en tiempo real, bitácora por turno y módulo de consultas.',
+      technologies: ['Laravel', 'PHP', 'MySQL / MariaDB', 'JavaScript', 'Bootstrap 5', 'Lector QR'],
+      privateNote: 'Código fuente privado por políticas de confidencialidad y seguridad institucional.',
+    },
     {
       title: 'CaboOS — Smart TV Launcher (Android TV)',
       status: 'Completado • Desplegado en Smart TV',

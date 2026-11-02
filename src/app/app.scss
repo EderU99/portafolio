@@ -1728,3 +1728,9 @@
 .project-card:hover .project-preview-img img {
   transform: scale(1.05);
 }
+
+@media (min-width: 921px) {
+  .projects-grid .project-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
