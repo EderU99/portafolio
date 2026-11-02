@@ -25,6 +25,7 @@ interface Project {
   technologies: string[];
   repoUrl?: string;
   demoUrl?: string;
+  image?: string;
   featured?: boolean;
   progress?: number;
 }
@@ -250,6 +251,17 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
   protected readonly projects: Project[] = [
     {
+      title: 'CaboOS — Smart TV Launcher (Android TV)',
+      status: 'Completado • Desplegado en Smart TV',
+      statusType: 'completed',
+      featured: true,
+      image: 'projects/cabo-os-preview.png',
+      description:
+        'Launcher personalizado para Android TV (basado en CleanYourTV y optimizado para Smart TV). Incluye interfaz Glassmorphism, fondos rotativos dinámicos y por temporada, widget de clima en tiempo real, fila interactiva "Continuar viendo", control de volumen 3D cristalizado y despliegue inalámbrico vía ADB.',
+      technologies: ['Java / Android TV', 'ADB & PowerShell', 'Glassmorphism UI', 'Gemini CLI'],
+      repoUrl: 'https://github.com/EderU99/cabo-os-smart-tv',
+    },
+    {
       title: 'Plataforma de Gestión para Nutriólogos',
       status: 'En Desarrollo (Próximamente Demo)',
       statusType: 'in-progress',
@@ -258,16 +270,6 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       description:
         'Sistema clínico integral para especialistas en nutrición. Incluye control de expedientes de pacientes, historial antropométrico, cálculo dietético, generación de planes alimenticios personalizados y agenda interactiva.',
       technologies: ['Angular', 'TypeScript', 'API REST', 'MySQL / SQL', 'SCSS'],
-    },
-    {
-      title: 'Repositorios y Prácticas en GitHub (@EderU99)',
-      status: 'Código Abierto',
-      statusType: 'upcoming',
-      featured: false,
-      description:
-        'Colección de sistemas web, APIs, scripts de automatización y proyectos académicos construidos con .NET Core / ASP.NET, Laravel, PHP, Python, Angular y motores de bases de datos SQL y NoSQL.',
-      technologies: ['.NET Core / ASP.NET', 'Laravel', 'PHP', 'Python', 'MySQL', 'SQL Server', 'MongoDB'],
-      repoUrl: 'https://github.com/EderU99',
     },
   ];
 
