@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0b132b"/>
+      <stop offset="100%" stop-color="#050814"/>
+    </linearGradient>
+    <linearGradient id="neonGrad" x1="6" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="55%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded Dark Tech Badge -->
+  <rect x="3" y="3" width="58" height="58" rx="15" fill="url(#bgGrad)" stroke="url(#neonGrad)" stroke-width="3.5"/>
+
+  <!-- Left Code Bracket < -->
+  <path d="M18 23L10 32L18 41" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Bold Stylized Letter E -->
+  <path d="M25 20H41M25 32H38M25 44H41M25 20V44" stroke="url(#neonGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Right Code Bracket > -->
+  <path d="M46 23L54 32L46 41" stroke="#34d399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
