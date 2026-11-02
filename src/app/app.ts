@@ -91,7 +91,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   protected readonly highlights = [
     {
       value: 'Full Stack',
-      label: 'Angular, Laravel, PHP & Python',
+      label: 'Angular, .NET, Laravel & Python',
       icon: 'code',
     },
     {
@@ -136,6 +136,11 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       name: 'Laravel',
       category: 'Framework',
       logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg',
+    },
+    {
+      name: '.NET Core / ASP.NET',
+      category: 'Framework Backend',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg',
     },
     {
       name: 'Python',
@@ -198,6 +203,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       icon: 'server',
       accent: 'indigo',
       skills: [
+        { name: '.NET Core / ASP.NET', tag: 'Framework Backend', level: 84 },
         { name: 'PHP', tag: 'Backend', level: 85 },
         { name: 'Laravel', tag: 'Framework MVC', level: 85 },
         { name: 'Python', tag: 'Scripting & Backend', level: 82 },
@@ -259,8 +265,8 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       statusType: 'upcoming',
       featured: false,
       description:
-        'Colección de sistemas web, scripts de automatización y proyectos académicos construidos con Laravel, PHP, Python, Angular y motores de bases de datos relacionales y NoSQL.',
-      technologies: ['Laravel', 'PHP', 'Python', 'MySQL', 'MongoDB', 'Git'],
+        'Colección de sistemas web, APIs, scripts de automatización y proyectos académicos construidos con .NET Core / ASP.NET, Laravel, PHP, Python, Angular y motores de bases de datos SQL y NoSQL.',
+      technologies: ['.NET Core / ASP.NET', 'Laravel', 'PHP', 'Python', 'MySQL', 'SQL Server', 'MongoDB'],
       repoUrl: 'https://github.com/EderU99',
     },
   ];
