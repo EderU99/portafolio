@@ -1537,3 +1537,105 @@
     box-shadow: 0 14px 30px rgba(56, 189, 248, 0.7);
   }
 }
+
+
+/* =========================================================
+   10. VISUAL TECH LOGO CAROUSEL (HR VISUAL IMPACT)
+   ========================================================= */
+.logo-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.75rem 0 2.75rem;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.logo-carousel-track {
+  display: flex;
+  width: max-content;
+  gap: 1.25rem;
+  animation: marquee-scroll 26s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.logo-pill-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem 1.35rem;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 1rem;
+  min-width: 195px;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-5px) scale(1.03);
+    border-color: rgba(56, 189, 248, 0.55);
+    background: rgba(23, 37, 68, 0.92);
+    box-shadow: 0 14px 28px -10px rgba(56, 189, 248, 0.3);
+
+    .logo-img-box img {
+      transform: scale(1.12);
+    }
+  }
+
+  .logo-img-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 0.65rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.25s ease;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+    }
+  }
+
+  .logo-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+
+    .logo-name {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    .logo-cat {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent-primary);
+      white-space: nowrap;
+    }
+  }
+}

@@ -105,22 +105,62 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     },
   ];
 
-  protected readonly techMarquee = [
-    'Angular',
-    'JavaScript ES6+',
-    'HTML5 & SCSS',
-    'PHP',
-    'Laravel',
-    'Python',
-    'MySQL',
-    'SQL Server',
-    'MongoDB',
-    'Microsoft 365',
-    'Exchange Online',
-    'SharePoint',
-    'Bitdefender Security',
-    'Soporte N1 & N2',
-    'Redes & Tickets',
+  protected readonly techLogos = [
+    {
+      name: 'Angular',
+      category: 'Frontend',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg',
+    },
+    {
+      name: 'JavaScript',
+      category: 'Lenguaje',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
+    },
+    {
+      name: 'HTML5',
+      category: 'Web',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
+    },
+    {
+      name: 'CSS3 / SCSS',
+      category: 'Diseño',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg',
+    },
+    {
+      name: 'PHP',
+      category: 'Backend',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg',
+    },
+    {
+      name: 'Laravel',
+      category: 'Framework',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg',
+    },
+    {
+      name: 'Python',
+      category: 'Backend & Scripts',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg',
+    },
+    {
+      name: 'MySQL',
+      category: 'Base de Datos',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg',
+    },
+    {
+      name: 'SQL Server',
+      category: 'Base de Datos',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-original.svg',
+    },
+    {
+      name: 'MongoDB',
+      category: 'NoSQL',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg',
+    },
+    {
+      name: 'Git & GitHub',
+      category: 'Control de Versiones',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg',
+    },
   ];
 
   protected readonly skillCategories: SkillCategory[] = [

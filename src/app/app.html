@@ -254,22 +254,6 @@
       </a>
     </section>
 
-    <!-- Infinite Tech Marquee Ribbon -->
-    <div class="marquee-Ribbon" aria-hidden="true">
-      <div class="marquee-track">
-        @for (tech of techMarquee; track $index) {
-          <span class="marquee-item">
-            <span class="marquee-star">✦</span> {{ tech }}
-          </span>
-        }
-        @for (tech of techMarquee; track $index) {
-          <span class="marquee-item">
-            <span class="marquee-star">✦</span> {{ tech }}
-          </span>
-        }
-      </div>
-    </div>
-
     <!-- Sobre Mí Section -->
     <section id="sobre-mi" class="section about-section">
       <div class="container">
@@ -311,6 +295,34 @@
           <p class="section-subtitle">
             Dominio integral de lenguajes de programación, bases de datos y administración de infraestructura empresarial.
           </p>
+        </div>
+
+        <!-- Moving Tech Logos Carousel (Visual Impact for HR) -->
+        <div class="logo-carousel-wrapper scroll-reveal reveal-fade-up delay-1">
+          <div class="logo-carousel-track">
+            @for (item of techLogos; track $index) {
+              <div class="logo-pill-card">
+                <div class="logo-img-box">
+                  <img [src]="item.logo" [alt]="item.name" loading="lazy" />
+                </div>
+                <div class="logo-info">
+                  <span class="logo-name">{{ item.name }}</span>
+                  <span class="logo-cat">{{ item.category }}</span>
+                </div>
+              </div>
+            }
+            @for (item of techLogos; track $index) {
+              <div class="logo-pill-card" aria-hidden="true">
+                <div class="logo-img-box">
+                  <img [src]="item.logo" [alt]="item.name" loading="lazy" />
+                </div>
+                <div class="logo-info">
+                  <span class="logo-name">{{ item.name }}</span>
+                  <span class="logo-cat">{{ item.category }}</span>
+                </div>
+              </div>
+            }
+          </div>
         </div>
 
         <div class="skills-grid">
