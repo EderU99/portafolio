@@ -207,7 +207,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
         { name: 'Soporte Técnico Nivel 1 y 2', tag: 'Helpdesk / Sitio', level: 95 },
         { name: 'Microsoft 365 / Office 365', tag: 'Cloud Admin', level: 92 },
         { name: 'Exchange & SharePoint', tag: 'Colaboración', level: 88 },
-        { name: 'Bitdefender Antivirus', tag: 'Seguridad Endpoint', level: 90 },
+        { name: 'Bitdefender (Consola Admin)', tag: 'Revisión de Alertas & Escaneos', level: 80 },
         { name: 'Redes Básicas', tag: 'Conectividad / LAN', level: 85 },
         { name: 'Sistemas de Tickets', tag: 'Gestión SLA', level: 94 },
       ],
