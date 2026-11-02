@@ -1,4 +1,13 @@
-import { Component, OnInit, OnDestroy, signal } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  AfterViewInit,
+  HostListener,
+  ElementRef,
+  inject,
+  signal,
+} from '@angular/core';
 
 interface SkillCategory {
   title: string;
@@ -26,8 +35,18 @@ interface Project {
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App implements OnInit, OnDestroy {
+export class App implements OnInit, AfterViewInit, OnDestroy {
+  private readonly el = inject(ElementRef);
+
   protected readonly mobileMenuOpen = signal(false);
+
+  // Scroll animations & tracking state
+  protected readonly scrollProgress = signal(0);
+  protected readonly scrollY = signal(0);
+  protected readonly activeSection = signal('inicio');
+  protected readonly showBackToTop = signal(false);
+  protected readonly skillsVisible = signal(false);
+  protected readonly projectsVisible = signal(false);
 
   // Loading Splash Screen state
   protected readonly isLoading = signal(true);
@@ -51,6 +70,7 @@ export class App implements OnInit, OnDestroy {
   private isDeleting = false;
   private typewriterTimer?: ReturnType<typeof setTimeout>;
   private loaderInterval?: ReturnType<typeof setInterval>;
+  private scrollObserver?: IntersectionObserver;
 
   protected readonly nameLetters = 'EDER UGARTE'.split('');
 
@@ -62,9 +82,9 @@ export class App implements OnInit, OnDestroy {
     shortBio:
       'Combino el desarrollo de aplicaciones web modernas con una sólida experiencia en infraestructura tecnológica, administración de servicios en la nube (Microsoft 365) y soporte técnico especializado.',
     location: 'México',
-    email: 'contacto@ederugarte.dev',
+    email: 'eder_daniel@live.com',
     github: 'https://github.com/EderU99',
-    linkedin: 'https://linkedin.com/',
+    linkedin: 'https://www.linkedin.com/in/ederdanielugarte/',
   };
 
   protected readonly highlights = [
@@ -182,13 +202,98 @@ export class App implements OnInit, OnDestroy {
     this.startTypewriter();
   }
 
+  ngAfterViewInit(): void {
+    this.initScrollRevealObserver();
+  }
+
   ngOnDestroy(): void {
     if (this.typewriterTimer) clearTimeout(this.typewriterTimer);
     if (this.loaderInterval) clearInterval(this.loaderInterval);
+    if (this.scrollObserver) this.scrollObserver.disconnect();
+  }
+
+  @HostListener('window:scroll')
+  protected onWindowScroll(): void {
+    const winScroll = window.scrollY || document.documentElement.scrollTop;
+    const height =
+      document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = height > 0 ? Math.min(100, Math.max(0, (winScroll / height) * 100)) : 0;
+
+    this.scrollY.set(winScroll);
+    this.scrollProgress.set(scrolled);
+    this.showBackToTop.set(winScroll > 380);
+
+    // Update active navbar link based on scroll position
+    const sections = ['inicio', 'sobre-mi', 'habilidades', 'proyectos', 'contacto'];
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const sectionEl = document.getElementById(sections[i]);
+      if (sectionEl) {
+        const rect = sectionEl.getBoundingClientRect();
+        if (rect.top <= 240) {
+          this.activeSection.set(sections[i]);
+          break;
+        }
+      }
+    }
+  }
+
+  private initScrollRevealObserver(): void {
+    if (typeof IntersectionObserver === 'undefined') {
+      this.skillsVisible.set(true);
+      this.projectsVisible.set(true);
+      return;
+    }
+
+    this.scrollObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const target = entry.target as HTMLElement;
+          if (entry.isIntersecting) {
+            target.classList.add('in-view');
+
+            if (target.id === 'habilidades' || target.closest('#habilidades')) {
+              this.skillsVisible.set(true);
+            }
+            if (target.id === 'proyectos' || target.closest('#proyectos')) {
+              this.projectsVisible.set(true);
+            }
+          } else {
+            // Re-animate smoothly when scrolling back up/down
+            if (entry.boundingClientRect.top > 0) {
+              target.classList.remove('in-view');
+              if (target.id === 'habilidades') {
+                this.skillsVisible.set(false);
+              }
+              if (target.id === 'proyectos') {
+                this.projectsVisible.set(false);
+              }
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.14,
+        rootMargin: '0px 0px -50px 0px',
+      }
+    );
+
+    const revealElements = this.el.nativeElement.querySelectorAll('.scroll-reveal');
+    revealElements.forEach((elem: Element) => this.scrollObserver?.observe(elem));
+
+    const skillsSection = document.getElementById('habilidades');
+    if (skillsSection) this.scrollObserver.observe(skillsSection);
+
+    const projectsSection = document.getElementById('proyectos');
+    if (projectsSection) this.scrollObserver.observe(projectsSection);
+  }
+
+  protected scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   protected replayIntro(): void {
     this.mobileMenuOpen.set(false);
+    this.scrollToTop();
     this.startSplashLoader();
   }
 
@@ -242,7 +347,7 @@ export class App implements OnInit, OnDestroy {
       let speed = this.isDeleting ? 28 : 55;
 
       if (!this.isDeleting && this.charIndex === fullText.length) {
-        speed = 2200; // Pause at end of phrase
+        speed = 2200;
         this.isDeleting = true;
       } else if (this.isDeleting && this.charIndex === 0) {
         this.isDeleting = false;

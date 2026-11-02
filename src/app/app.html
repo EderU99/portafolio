@@ -50,18 +50,23 @@
   </div>
 }
 
+<!-- TOP LASER SCROLL PROGRESS BAR -->
+<div class="scroll-progress-container" aria-hidden="true">
+  <div class="scroll-progress-bar" [style.width.%]="scrollProgress()"></div>
+</div>
+
 <!-- MAIN PORTFOLIO -->
 <div class="portfolio-wrapper" [class.content-ready]="!isLoading()">
-  <!-- Animated Background Elements -->
+  <!-- Animated Background Elements with Scroll Parallax -->
   <div class="ambient-bg" aria-hidden="true">
-    <div class="bg-grid"></div>
-    <div class="ambient-orb orb-cyan"></div>
-    <div class="ambient-orb orb-indigo"></div>
-    <div class="ambient-orb orb-emerald"></div>
+    <div class="bg-grid" [style.transform]="'translateY(' + (scrollY() * 0.08) + 'px)'"></div>
+    <div class="ambient-orb orb-cyan" [style.transform]="'translateY(' + (scrollY() * -0.15) + 'px)'"></div>
+    <div class="ambient-orb orb-indigo" [style.transform]="'translateY(' + (scrollY() * 0.12) + 'px)'"></div>
+    <div class="ambient-orb orb-emerald" [style.transform]="'translateY(' + (scrollY() * -0.1) + 'px)'"></div>
   </div>
 
   <!-- Navbar -->
-  <header class="navbar">
+  <header class="navbar" [class.navbar-scrolled]="scrollY() > 40">
     <div class="container nav-container">
       <a href="#inicio" class="logo" (click)="closeMobileMenu()">
         <span class="logo-bracket">&lt;</span>
@@ -76,15 +81,36 @@
       </button>
 
       <nav class="nav-links" [class.active]="mobileMenuOpen()">
-        <a href="#inicio" (click)="closeMobileMenu()">Inicio</a>
-        <a href="#sobre-mi" (click)="closeMobileMenu()">Sobre mí</a>
-        <a href="#habilidades" (click)="closeMobileMenu()">Habilidades</a>
-        <a href="#proyectos" (click)="closeMobileMenu()">Proyectos</a>
+        <a
+          href="#inicio"
+          [class.active-link]="activeSection() === 'inicio'"
+          (click)="closeMobileMenu()"
+        >Inicio</a>
+        <a
+          href="#sobre-mi"
+          [class.active-link]="activeSection() === 'sobre-mi'"
+          (click)="closeMobileMenu()"
+        >Sobre mí</a>
+        <a
+          href="#habilidades"
+          [class.active-link]="activeSection() === 'habilidades'"
+          (click)="closeMobileMenu()"
+        >Habilidades</a>
+        <a
+          href="#proyectos"
+          [class.active-link]="activeSection() === 'proyectos'"
+          (click)="closeMobileMenu()"
+        >Proyectos</a>
         <button type="button" class="replay-btn" (click)="replayIntro()" title="Ver animación de carga">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
           <span>Intro</span>
         </button>
-        <a href="#contacto" class="nav-cta" (click)="closeMobileMenu()">Contacto</a>
+        <a
+          href="#contacto"
+          class="nav-cta"
+          [class.active-cta]="activeSection() === 'contacto'"
+          (click)="closeMobileMenu()"
+        >Contacto</a>
       </nav>
     </div>
   </header>
@@ -218,6 +244,14 @@
           </div>
         </div>
       </div>
+
+      <!-- Animated Scroll Down Mouse Indicator -->
+      <a href="#sobre-mi" class="scroll-down-indicator" aria-label="Bajar a Sobre mí">
+        <div class="mouse-outline">
+          <span class="mouse-wheel"></span>
+        </div>
+        <span class="scroll-label">Desliza para explorar</span>
+      </a>
     </section>
 
     <!-- Infinite Tech Marquee Ribbon -->
@@ -239,14 +273,13 @@
     <!-- Sobre Mí Section -->
     <section id="sobre-mi" class="section about-section">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header scroll-reveal reveal-fade-up">
           <span class="section-tag">// 01. Perfil Profesional</span>
           <h2 class="section-title">El puente entre el <span class="gradient-text">Desarrollo de Software</span> y la <span class="gradient-text">Infraestructura TI</span></h2>
         </div>
 
         <div class="about-grid">
-          <div class="about-card glow-card">
-            <div class="card-glow-border"></div>
+          <div class="about-card glow-card scroll-reveal reveal-fade-left delay-1">
             <div class="about-icon cyan">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
             </div>
@@ -256,8 +289,7 @@
             </p>
           </div>
 
-          <div class="about-card glow-card">
-            <div class="card-glow-border"></div>
+          <div class="about-card glow-card scroll-reveal reveal-fade-right delay-2">
             <div class="about-icon indigo">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
             </div>
@@ -273,7 +305,7 @@
     <!-- Habilidades Section -->
     <section id="habilidades" class="section skills-section">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header scroll-reveal reveal-fade-up">
           <span class="section-tag">// 02. Stack &amp; Herramientas</span>
           <h2 class="section-title">Habilidades <span class="gradient-text">Técnicas</span></h2>
           <p class="section-subtitle">
@@ -282,8 +314,12 @@
         </div>
 
         <div class="skills-grid">
-          @for (cat of skillCategories; track cat.title) {
-            <div class="skill-category-card" [attr.data-accent]="cat.accent">
+          @for (cat of skillCategories; track cat.title; let idx = $index) {
+            <div
+              class="skill-category-card scroll-reveal reveal-fade-up"
+              [class]="'delay-' + ((idx % 4) + 1)"
+              [attr.data-accent]="cat.accent"
+            >
               <div class="category-header">
                 <div class="category-icon" [class]="cat.accent">
                   @switch (cat.icon) {
@@ -308,7 +344,7 @@
               </div>
 
               <div class="skill-bars-list">
-                @for (skill of cat.skills; track skill.name) {
+                @for (skill of cat.skills; track skill.name; let sIdx = $index) {
                   <div class="skill-bar-item">
                     <div class="skill-bar-top">
                       <span class="skill-name">{{ skill.name }}</span>
@@ -320,7 +356,8 @@
                       <div
                         class="skill-bar-fill"
                         [class]="cat.accent"
-                        [style.width.%]="skill.level"
+                        [style.width.%]="skillsVisible() ? skill.level : 0"
+                        [style.transition-delay]="(sIdx * 0.12) + 's'"
                       ></div>
                     </div>
                   </div>
@@ -335,7 +372,7 @@
     <!-- Proyectos Section -->
     <section id="proyectos" class="section projects-section">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header scroll-reveal reveal-fade-up">
           <span class="section-tag">// 03. Portafolio de Trabajo</span>
           <h2 class="section-title">Proyectos <span class="gradient-text">Destacados</span></h2>
           <p class="section-subtitle">
@@ -344,8 +381,15 @@
         </div>
 
         <div class="projects-grid">
-          @for (project of projects; track project.title) {
-            <article class="project-card" [class.featured]="project.featured">
+          @for (project of projects; track project.title; let pIdx = $index) {
+            <article
+              class="project-card scroll-reveal"
+              [class.featured]="project.featured"
+              [class.reveal-fade-left]="pIdx === 0"
+              [class.reveal-fade-right]="pIdx !== 0"
+              [class.delay-1]="pIdx === 0"
+              [class.delay-2]="pIdx !== 0"
+            >
               <div class="project-top">
                 <span class="status-badge" [class]="project.statusType">
                   <span class="status-dot"></span>
@@ -360,10 +404,13 @@
                 <div class="project-progress-wrap">
                   <div class="project-progress-head">
                     <span>Avance del desarrollo</span>
-                    <span class="pct">{{ project.progress }}%</span>
+                    <span class="pct">{{ projectsVisible() ? project.progress : 0 }}%</span>
                   </div>
                   <div class="project-progress-bar">
-                    <div class="project-progress-fill" [style.width.%]="project.progress"></div>
+                    <div
+                      class="project-progress-fill"
+                      [style.width.%]="projectsVisible() ? project.progress : 0"
+                    ></div>
                   </div>
                 </div>
               }
@@ -396,7 +443,7 @@
     <!-- Contacto Section -->
     <section id="contacto" class="section contact-section">
       <div class="container">
-        <div class="contact-box">
+        <div class="contact-box scroll-reveal reveal-scale">
           <span class="section-tag">// 04. ¿Hablamos?</span>
           <h2 class="section-title">Impulsemos tu próximo <span class="gradient-text">proyecto o equipo TI</span></h2>
           <p class="contact-text">
@@ -413,6 +460,7 @@
               <span>GitHub (@EderU99)</span>
             </a>
             <a [href]="profile.linkedin" target="_blank" rel="noopener" class="btn btn-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
               <span>LinkedIn</span>
             </a>
           </div>
@@ -420,6 +468,18 @@
       </div>
     </section>
   </main>
+
+  <!-- Floating Back To Top Button -->
+  <button
+    type="button"
+    class="back-to-top-btn"
+    [class.visible]="showBackToTop()"
+    (click)="scrollToTop()"
+    aria-label="Volver arriba"
+    title="Volver arriba"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
 
   <!-- Footer -->
   <footer class="footer">

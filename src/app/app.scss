@@ -1341,3 +1341,192 @@
     gap: 0.85rem;
   }
 }
+
+
+/* =========================================================
+   9. SCROLL ANIMATIONS, PROGRESS BAR & INTERSECTION REVEAL
+   ========================================================= */
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.4);
+  pointer-events: none;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8 0%, #818cf8 55%, #34d399 100%);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.85);
+  transition: width 0.08s ease-out;
+}
+
+.navbar.navbar-scrolled {
+  background: rgba(5, 8, 18, 0.92);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+  border-bottom-color: rgba(56, 189, 248, 0.22);
+}
+
+.nav-links a {
+  position: relative;
+
+  &.active-link {
+    color: #38bdf8;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.7);
+    }
+  }
+
+  &.active-cta {
+    background: var(--accent-primary) !important;
+    color: #060913 !important;
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.55);
+  }
+}
+
+/* Mouse Scroll Down Indicator */
+.scroll-down-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 2.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    color: var(--accent-primary);
+    transform: translateY(3px);
+  }
+
+  .mouse-outline {
+    width: 24px;
+    height: 38px;
+    border: 2px solid rgba(148, 163, 184, 0.45);
+    border-radius: 999px;
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+  }
+
+  .mouse-wheel {
+    width: 4px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--accent-primary);
+    box-shadow: 0 0 8px var(--accent-primary);
+    animation: scroll-wheel 1.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+}
+
+@keyframes scroll-wheel {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  70% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll Reveal Animations */
+.scroll-reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &.reveal-fade-up {
+    transform: translateY(44px);
+  }
+
+  &.reveal-fade-left {
+    transform: translateX(-48px);
+  }
+
+  &.reveal-fade-right {
+    transform: translateX(48px);
+  }
+
+  &.reveal-scale {
+    transform: scale(0.92) translateY(28px);
+  }
+
+  &.delay-1 {
+    transition-delay: 0.08s;
+  }
+  &.delay-2 {
+    transition-delay: 0.18s;
+  }
+  &.delay-3 {
+    transition-delay: 0.28s;
+  }
+  &.delay-4 {
+    transition-delay: 0.38s;
+  }
+
+  &.in-view {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.project-progress-fill {
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+}
+
+/* Floating Back To Top Button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 95;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+  color: #060913;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.45);
+  opacity: 0;
+  transform: translateY(20px) scale(0.85);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  &:hover {
+    transform: translateY(-4px) scale(1.06);
+    box-shadow: 0 14px 30px rgba(56, 189, 248, 0.7);
+  }
+}
