@@ -81,7 +81,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     secondaryRole: 'Especialista en Infraestructura TI & Herramientas IA',
     degree: 'Técnico Superior Universitario en Desarrollo de Software Multiplataforma',
     shortBio:
-      'Combino el desarrollo de aplicaciones web modernas con una sólida experiencia en infraestructura tecnológica (Microsoft 365 & Soporte N1/N2), el uso avanzado de agentes de IA en consola (Gemini CLI, Grok) y generación de video e imagen local con ComfyUI.',
+      'Combino el desarrollo de aplicaciones web modernas con una sólida experiencia en infraestructura tecnológica (Microsoft 365 & Soporte N1/N2), el uso avanzado de agentes de IA (Gemini CLI, Grok Build) y generación de video e imagen local con ComfyUI.',
     location: 'México',
     email: 'eder_daniel@live.com',
     github: 'https://github.com/EderU99',
@@ -163,9 +163,19 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg',
     },
     {
-      name: 'Gemini / IA CLI',
-      category: 'Agentes & Código',
-      logo: 'https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg',
+      name: 'Gemini CLI',
+      category: 'Agente IA & Código',
+      logo: 'logos/gemini.svg',
+    },
+    {
+      name: 'Grok Build',
+      category: 'Desarrollo con IA',
+      logo: 'logos/grok.svg',
+    },
+    {
+      name: 'ComfyUI',
+      category: 'IA Video & Imagen',
+      logo: 'logos/comfyui.svg',
     },
   ];
 
@@ -219,14 +229,14 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       ],
     },
     {
-      title: 'Inteligencia Artificial & Agentes en Consola (CLI)',
-      subtitle: 'Programación asistida por agentes IA, automatización en CMD y flujos generativos locales con ComfyUI',
+      title: 'Inteligencia Artificial & Desarrollo Asistido',
+      subtitle: 'Programación asistida por agentes IA (Gemini CLI, Grok Build) y flujos generativos locales con ComfyUI',
       icon: 'ai',
       accent: 'purple',
       skills: [
         { name: 'Gemini CLI (Antigravity)', tag: 'Agente de Código en Terminal', level: 92 },
         { name: 'ComfyUI (IA Local en PC)', tag: 'Generación de Video e Imágenes', level: 88 },
-        { name: 'Grok en CMD / Terminal', tag: 'Consultas & Scripting Rápido', level: 85 },
+        { name: 'Grok Build', tag: 'Desarrollo & Prompts IA', level: 85 },
         { name: 'Ingeniería de Prompts & Flujos IA', tag: 'Optimización de Desarrollo', level: 90 },
       ],
     },
