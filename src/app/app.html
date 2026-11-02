@@ -1,0 +1,435 @@
+<!-- SPLASH / LOADING SCREEN -->
+@if (isLoading()) {
+  <div class="splash-screen" [class.splash-exit]="isExitingLoader()">
+    <div class="splash-grid-bg"></div>
+    <div class="splash-glow-orb orb-1"></div>
+    <div class="splash-glow-orb orb-2"></div>
+
+    <div class="splash-content">
+      <!-- Orbital Cyber Logo -->
+      <div class="cyber-loader">
+        <div class="ring ring-outer"></div>
+        <div class="ring ring-middle"></div>
+        <div class="ring ring-inner"></div>
+        <div class="core-logo">
+          <span class="bracket">&lt;</span>EU<span class="slash">/&gt;</span>
+        </div>
+      </div>
+
+      <!-- Animated Name Letter by Letter -->
+      <div class="splash-title-wrap">
+        <h1 class="splash-name" aria-label="Eder Ugarte">
+          @for (letter of nameLetters; track $index) {
+            <span
+              class="char"
+              [class.space]="letter === ' '"
+              [style.animation-delay]="($index * 0.06) + 's'"
+            >
+              {{ letter === ' ' ? '\u00A0' : letter }}
+            </span>
+          }
+        </h1>
+        <p class="splash-role">DESARROLLADOR DE SOFTWARE MULTIPLATAFORMA &amp; TI</p>
+      </div>
+
+      <!-- Progress Bar & Console Status -->
+      <div class="splash-progress-box">
+        <div class="progress-meta">
+          <span class="status-console">
+            <span class="prompt">&gt;</span> {{ loadingStatus() }}
+          </span>
+          <span class="progress-percent">{{ loadProgress() }}%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" [style.width.%]="loadProgress()">
+            <span class="progress-glow"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MAIN PORTFOLIO -->
+<div class="portfolio-wrapper" [class.content-ready]="!isLoading()">
+  <!-- Animated Background Elements -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="ambient-orb orb-cyan"></div>
+    <div class="ambient-orb orb-indigo"></div>
+    <div class="ambient-orb orb-emerald"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#inicio" class="logo" (click)="closeMobileMenu()">
+        <span class="logo-bracket">&lt;</span>
+        <span class="logo-text">EderUgarte</span>
+        <span class="logo-slash">/&gt;</span>
+      </a>
+
+      <button class="mobile-toggle" (click)="toggleMobileMenu()" aria-label="Abrir menú">
+        <span class="bar" [class.open]="mobileMenuOpen()"></span>
+        <span class="bar" [class.open]="mobileMenuOpen()"></span>
+        <span class="bar" [class.open]="mobileMenuOpen()"></span>
+      </button>
+
+      <nav class="nav-links" [class.active]="mobileMenuOpen()">
+        <a href="#inicio" (click)="closeMobileMenu()">Inicio</a>
+        <a href="#sobre-mi" (click)="closeMobileMenu()">Sobre mí</a>
+        <a href="#habilidades" (click)="closeMobileMenu()">Habilidades</a>
+        <a href="#proyectos" (click)="closeMobileMenu()">Proyectos</a>
+        <button type="button" class="replay-btn" (click)="replayIntro()" title="Ver animación de carga">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>Intro</span>
+        </button>
+        <a href="#contacto" class="nav-cta" (click)="closeMobileMenu()">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content reveal-up">
+          <div class="degree-badge">
+            <span class="pulse-dot"></span>
+            <span>{{ profile.degree }}</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hola, soy <span class="shimmer-name">{{ profile.name }}</span>
+          </h1>
+
+          <div class="typewriter-container">
+            <span class="typewriter-prefix">&gt;_</span>
+            <h2 class="hero-role-typed">{{ typedRole() }}</h2>
+            <span class="cursor-blink">|</span>
+          </div>
+
+          <p class="hero-description">
+            {{ profile.shortBio }}
+          </p>
+
+          <div class="hero-actions">
+            <a href="#proyectos" class="btn btn-primary">
+              <span>Ver Proyectos</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="#habilidades" class="btn btn-secondary">
+              <span>Explorar Stack</span>
+            </a>
+            <a [href]="profile.github" target="_blank" rel="noopener" class="btn btn-ghost" title="GitHub @EderU99">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <span>@EderU99</span>
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            @for (item of highlights; track item.value) {
+              <div class="stat-item">
+                <span class="stat-value">{{ item.value }}</span>
+                <span class="stat-label">{{ item.label }}</span>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Interactive 3D Floating Terminal -->
+        <div class="hero-visual reveal-right">
+          <div class="floating-badge badge-top">
+            <span class="badge-dot cyan"></span>
+            <span>Angular • Laravel • Python</span>
+          </div>
+          <div class="floating-badge badge-bottom">
+            <span class="badge-dot emerald"></span>
+            <span>Microsoft 365 &amp; Soporte N1/N2</span>
+          </div>
+
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+
+              <div class="terminal-tabs">
+                <button
+                  type="button"
+                  class="tab-btn"
+                  [class.active]="activeTerminalTab() === 'ts'"
+                  (click)="setTerminalTab('ts')"
+                >
+                  perfil.ts
+                </button>
+                <button
+                  type="button"
+                  class="tab-btn"
+                  [class.active]="activeTerminalTab() === 'sh'"
+                  (click)="setTerminalTab('sh')"
+                >
+                  infra_ti.sh
+                </button>
+                <button
+                  type="button"
+                  class="tab-btn"
+                  [class.active]="activeTerminalTab() === 'json'"
+                  (click)="setTerminalTab('json')"
+                >
+                  stack.json
+                </button>
+              </div>
+            </div>
+
+            <div class="terminal-body">
+              @if (activeTerminalTab() === 'ts') {
+                <pre class="fade-code"><code><span class="kw">const</span> <span class="var">ederUgarte</span> = &#123;
+  <span class="prop">profesion</span>: <span class="str">'TSU Desarrollo de Software'</span>,
+  <span class="prop">especialidad</span>: <span class="str">'Multiplataforma &amp; Cloud TI'</span>,
+  <span class="prop">frontend</span>: [<span class="str">'Angular'</span>, <span class="str">'JavaScript'</span>, <span class="str">'HTML/CSS'</span>],
+  <span class="prop">backend</span>: [<span class="str">'Laravel'</span>, <span class="str">'PHP'</span>, <span class="str">'Python'</span>],
+  <span class="prop">basesDeDatos</span>: [<span class="str">'MySQL'</span>, <span class="str">'SQL Server'</span>, <span class="str">'MongoDB'</span>],
+  <span class="prop">github</span>: <span class="str">'&#64;EderU99'</span>,
+  <span class="prop">listoParaCrear</span>: <span class="bool">true</span>
+&#125;;</code></pre>
+              } @else if (activeTerminalTab() === 'sh') {
+                <pre class="fade-code"><code><span class="kw">$</span> <span class="var">check-infrastructure</span> --admin eder
+<span class="str">[OK]</span> Soporte Técnico Nivel 1 y Nivel 2 Activo
+<span class="str">[OK]</span> Microsoft 365 / Office 365 Tenant Ready
+<span class="str">[OK]</span> Exchange Online &amp; SharePoint Configurados
+<span class="str">[OK]</span> Bitdefender Endpoint Security: Protegido
+<span class="str">[OK]</span> Redes &amp; Sistema de Tickets: 99.9% SLA
+<span class="bool">&gt; Estado: Operación continua garantizada_</span></code></pre>
+              } @else {
+                <pre class="fade-code"><code>&#123;
+  <span class="prop">"candidato"</span>: <span class="str">"Eder Ugarte"</span>,
+  <span class="prop">"nivelEducativo"</span>: <span class="str">"TSU Software Multiplataforma"</span>,
+  <span class="prop">"perfilHibrido"</span>: &#123;
+    <span class="prop">"desarrolloWeb"</span>: <span class="str">"Full Stack"</span>,
+    <span class="prop">"soporteInfraestructura"</span>: <span class="str">"Nivel 1 &amp; 2"</span>
+  &#125;,
+  <span class="prop">"disponibilidad"</span>: <span class="str">"Inmediata"</span>
+&#125;</code></pre>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Infinite Tech Marquee Ribbon -->
+    <div class="marquee-Ribbon" aria-hidden="true">
+      <div class="marquee-track">
+        @for (tech of techMarquee; track $index) {
+          <span class="marquee-item">
+            <span class="marquee-star">✦</span> {{ tech }}
+          </span>
+        }
+        @for (tech of techMarquee; track $index) {
+          <span class="marquee-item">
+            <span class="marquee-star">✦</span> {{ tech }}
+          </span>
+        }
+      </div>
+    </div>
+
+    <!-- Sobre Mí Section -->
+    <section id="sobre-mi" class="section about-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">// 01. Perfil Profesional</span>
+          <h2 class="section-title">El puente entre el <span class="gradient-text">Desarrollo de Software</span> y la <span class="gradient-text">Infraestructura TI</span></h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card glow-card">
+            <div class="card-glow-border"></div>
+            <div class="about-icon cyan">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <h3>Desarrollo de Software Multiplataforma</h3>
+            <p>
+              Formado como <strong>Técnico Superior Universitario en Desarrollo de Software Multiplataforma</strong>, diseño y construyo aplicaciones web escalables utilizando frameworks modernos como <strong>Angular</strong> en el frontend y <strong>Laravel / PHP / Python</strong> en el backend, integrando bases de datos relacionales y NoSQL.
+            </p>
+          </div>
+
+          <div class="about-card glow-card">
+            <div class="card-glow-border"></div>
+            <div class="about-icon indigo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            </div>
+            <h3>Infraestructura, Cloud &amp; Soporte N1/N2</h3>
+            <p>
+              Entiendo no solo cómo se escribe el código, sino también dónde y cómo opera. Cuento con experiencia práctica en administración de entornos <strong>Microsoft 365 (Exchange, SharePoint)</strong>, seguridad endpoint con <strong>Bitdefender</strong>, redes básicas, gestión de tickets y soporte de <strong>Nivel 1 y Nivel 2</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Habilidades Section -->
+    <section id="habilidades" class="section skills-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">// 02. Stack &amp; Herramientas</span>
+          <h2 class="section-title">Habilidades <span class="gradient-text">Técnicas</span></h2>
+          <p class="section-subtitle">
+            Dominio integral de lenguajes de programación, bases de datos y administración de infraestructura empresarial.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          @for (cat of skillCategories; track cat.title) {
+            <div class="skill-category-card" [attr.data-accent]="cat.accent">
+              <div class="category-header">
+                <div class="category-icon" [class]="cat.accent">
+                  @switch (cat.icon) {
+                    @case ('code') {
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    }
+                    @case ('server') {
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    }
+                    @case ('database') {
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                    }
+                    @case ('shield') {
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    }
+                  }
+                </div>
+                <div>
+                  <h3 class="category-title">{{ cat.title }}</h3>
+                  <p class="category-subtitle">{{ cat.subtitle }}</p>
+                </div>
+              </div>
+
+              <div class="skill-bars-list">
+                @for (skill of cat.skills; track skill.name) {
+                  <div class="skill-bar-item">
+                    <div class="skill-bar-top">
+                      <span class="skill-name">{{ skill.name }}</span>
+                      @if (skill.tag) {
+                        <span class="skill-tag">{{ skill.tag }}</span>
+                      }
+                    </div>
+                    <div class="skill-bar-track">
+                      <div
+                        class="skill-bar-fill"
+                        [class]="cat.accent"
+                        [style.width.%]="skill.level"
+                      ></div>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Proyectos Section -->
+    <section id="proyectos" class="section projects-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">// 03. Portafolio de Trabajo</span>
+          <h2 class="section-title">Proyectos <span class="gradient-text">Destacados</span></h2>
+          <p class="section-subtitle">
+            Soluciones en desarrollo activo y repositorios de código abierto.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          @for (project of projects; track project.title) {
+            <article class="project-card" [class.featured]="project.featured">
+              <div class="project-top">
+                <span class="status-badge" [class]="project.statusType">
+                  <span class="status-dot"></span>
+                  {{ project.status }}
+                </span>
+              </div>
+
+              <h3 class="project-title">{{ project.title }}</h3>
+              <p class="project-description">{{ project.description }}</p>
+
+              @if (project.progress) {
+                <div class="project-progress-wrap">
+                  <div class="project-progress-head">
+                    <span>Avance del desarrollo</span>
+                    <span class="pct">{{ project.progress }}%</span>
+                  </div>
+                  <div class="project-progress-bar">
+                    <div class="project-progress-fill" [style.width.%]="project.progress"></div>
+                  </div>
+                </div>
+              }
+
+              <div class="project-tech-list">
+                @for (tech of project.technologies; track tech) {
+                  <span class="tech-pill">{{ tech }}</span>
+                }
+              </div>
+
+              <div class="project-footer">
+                @if (project.featured) {
+                  <span class="project-note">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    El demo interactivo se publicará al finalizar el módulo actual.
+                  </span>
+                } @else if (project.repoUrl) {
+                  <a [href]="project.repoUrl" target="_blank" rel="noopener" class="project-link">
+                    <span>Explorar repositorios en GitHub (@EderU99)</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  </a>
+                }
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="section contact-section">
+      <div class="container">
+        <div class="contact-box">
+          <span class="section-tag">// 04. ¿Hablamos?</span>
+          <h2 class="section-title">Impulsemos tu próximo <span class="gradient-text">proyecto o equipo TI</span></h2>
+          <p class="contact-text">
+            Disponible para oportunidades como Desarrollador de Software Multiplataforma (Frontend / Full Stack) o Especialista en Infraestructura &amp; Soporte TI.
+          </p>
+
+          <div class="contact-actions">
+            <a [href]="'mailto:' + profile.email" class="btn btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>Contactar por Correo</span>
+            </a>
+            <a [href]="profile.github" target="_blank" rel="noopener" class="btn btn-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <span>GitHub (@EderU99)</span>
+            </a>
+            <a [href]="profile.linkedin" target="_blank" rel="noopener" class="btn btn-secondary">
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <strong>{{ profile.name }}</strong> — {{ profile.degree }}
+      </div>
+      <div class="footer-copy">
+        Desarrollado con Angular • Listo para Vercel
+      </div>
+    </div>
+  </footer>
+</div>
